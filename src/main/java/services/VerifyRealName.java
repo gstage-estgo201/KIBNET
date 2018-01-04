@@ -37,7 +37,7 @@ public class VerifyRealName {
 		reqDataValue.put("SEARCH_ACCT_NO", "14902597746");
 		reqDataValue.put("ACNM_NO", "860902");
 		reqDataValue.put("ICHE_AMT", "0");
-		reqDataValue.put("TRSC_SEQ_NO", "0000001");
+		reqDataValue.put("TRSC_SEQ_NO", "0000002");
 		reqData.add(reqDataValue);
 		
 		jsonData.put("REQ_DATA", reqData);

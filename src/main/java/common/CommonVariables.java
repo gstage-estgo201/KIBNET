@@ -9,4 +9,11 @@ public class CommonVariables {
 	public final static String SERVICE_CONTENT_710 = "CPIF_AFFL_710.jct?";
 	public final static String SERVICE_CONTENT_720 = "CPIF_AFFL_720.jct?";
 	public final static String SERVICE_CONTENT_721 = "CPIF_AFFL_721.jct?";
+	
+	// 성명 조회
+	public final static String VERIFY_NAME_URL = "http://dev.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp";
+//	public final static String VERIFY_NAME_URL = "https://gw.coocon.co.kr/sol/gateway/acctnm_rcms_wapi.jsp";
+	
+	public final static String SECR_KEY = "AhCv4embos1U4sDtF0gO";
+	public final static String KEY = "ACCTNM_RCMS_WAPI";
 }

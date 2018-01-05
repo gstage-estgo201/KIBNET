@@ -16,7 +16,7 @@ public class VerifyRealNameTests {
 			{"002", "02026007408704", "640524", "0", "0000002"},
 			{"088", "100020908927", "3148204065", "0", "0000002"}};
 	@Test
-	public void 정상동작확인_신한은행() {
+	public void 정상동작확인_all() {
 		for(String[] data : dataArray) {
 			JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 					.setBank_cd(data[0])
@@ -35,6 +35,25 @@ public class VerifyRealNameTests {
 			assertEquals("0000", getDataFromResponse(result, "RSLT_CD"));
 		}
 		
+	}
+	
+	@Test
+	public void 정상동작확인_농협은행() {
+		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
+				.setBank_cd("011")
+				.setSearch_acct_no("14902597746")
+				.setAcnm_no("860902")
+				.setIche_amt("0")
+				.setTrsc_seq_no("0000001")
+				.build();
+		
+		VerifyRealName verifyRealName = new VerifyRealName();
+		String result = verifyRealName.verify(jsonData.toString());
+		
+		System.out.println("result : " + result.trim());
+		
+		assertNotNull(result);
+		assertEquals("0000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
 	private String getDataFromResponse(String response, String key) {

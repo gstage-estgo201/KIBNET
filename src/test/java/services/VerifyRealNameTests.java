@@ -3,6 +3,8 @@ package services;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Random;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -12,9 +14,9 @@ import common.CommonVariables;
 
 public class VerifyRealNameTests {
 	private String[][] dataArray = {
-			{"011", "14902597746", "860902", "0", "0000002"},
-			{"002", "02026007408704", "640524", "0", "0000002"},
-			{"088", "100020908927", "3148204065", "0", "0000002"}};
+			{"011", "14902597746", "860902", "0"},
+			{"002", "02026007408704", "640524", "0"},
+			{"088", "100020908927", "3148204065", "0"}};
 	@Test
 	public void 정상동작확인_all() {
 		for(String[] data : dataArray) {
@@ -23,7 +25,7 @@ public class VerifyRealNameTests {
 					.setSearch_acct_no(data[1])
 					.setAcnm_no(data[2])
 					.setIche_amt(data[3])
-					.setTrsc_seq_no(data[4])
+					.setTrsc_seq_no(getRandomNum())
 					.build();
 			
 			VerifyRealName verifyRealName = new VerifyRealName();
@@ -34,7 +36,6 @@ public class VerifyRealNameTests {
 			assertNotNull(result);
 			assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 		}
-		
 	}
 	
 	@Test
@@ -44,7 +45,7 @@ public class VerifyRealNameTests {
 				.setSearch_acct_no("14902597746")
 				.setAcnm_no("860902")
 				.setIche_amt("0")
-				.setTrsc_seq_no("0000001")
+				.setTrsc_seq_no(getRandomNum())
 				.build();
 		
 		VerifyRealName verifyRealName = new VerifyRealName();
@@ -63,7 +64,7 @@ public class VerifyRealNameTests {
 				.setSearch_acct_no("02026007408704")
 				.setAcnm_no("640524")
 				.setIche_amt("0")
-				.setTrsc_seq_no("0000001")
+				.setTrsc_seq_no(getRandomNum())
 				.build();
 		
 		VerifyRealName verifyRealName = new VerifyRealName();
@@ -82,7 +83,7 @@ public class VerifyRealNameTests {
 				.setSearch_acct_no("21701322303023")
 				.setAcnm_no("711205")
 				.setIche_amt("0")
-				.setTrsc_seq_no("0000001")
+				.setTrsc_seq_no(getRandomNum())
 				.build();
 		
 		VerifyRealName verifyRealName = new VerifyRealName();
@@ -101,7 +102,7 @@ public class VerifyRealNameTests {
 				.setSearch_acct_no("01904232902016")
 				.setAcnm_no("790924")
 				.setIche_amt("0")
-				.setTrsc_seq_no("0000001")
+				.setTrsc_seq_no(getRandomNum())
 				.build();
 		
 		VerifyRealName verifyRealName = new VerifyRealName();
@@ -120,7 +121,7 @@ public class VerifyRealNameTests {
 				.setSearch_acct_no("620199910659")
 				.setAcnm_no("850101")
 				.setIche_amt("0")
-				.setTrsc_seq_no("0000001")
+				.setTrsc_seq_no(getRandomNum())
 				.build();
 		
 		VerifyRealName verifyRealName = new VerifyRealName();
@@ -145,6 +146,15 @@ public class VerifyRealNameTests {
 		}
 				
 		return value;
+	}
+	
+	private String getRandomNum() {
+		Random random = new Random();
+		int number = random.nextInt(1000000) + 100000;
+		if(number > 1000000) {
+			number -= number - 100000;
+		}
+		return String.valueOf(number);
 	}
 	
 //	은행	은행코드	테스트 고객계좌	생년월일/사업자번호

@@ -154,7 +154,7 @@ public class VerifyRealNameTests {
 		if(number > 1000000) {
 			number -= number - 100000;
 		}
-		return String.valueOf(number);
+		return "0" + String.valueOf(number);
 	}
 	
 //	은행	은행코드	테스트 고객계좌	생년월일/사업자번호

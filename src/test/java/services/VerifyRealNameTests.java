@@ -14,9 +14,8 @@ import common.CommonVariables;
 
 public class VerifyRealNameTests {
 	private String[][] dataArray = {
-			{"011", "14902597746", "860902", "0"},
-			{"002", "02026007408704", "640524", "0"},
-			{"088", "100020908927", "3148204065", "0"}};
+			{"011", "14902597746", "860902", "0"}};
+	
 	@Test
 	public void 정상동작확인_all() {
 		for(String[] data : dataArray) {
@@ -115,11 +114,92 @@ public class VerifyRealNameTests {
 	}
 	
 	@Test
+	public void 정상동작확인_국민은행() {
+		// TODO 국민은행은 운영계좌로 확인 필요
+	}
+	
+	@Test
 	public void 정상동작확인_외환은행() {
 		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("005")
 				.setSearch_acct_no("620199910659")
 				.setAcnm_no("850101")
+				.setIche_amt("0")
+				.setTrsc_seq_no(getRandomNum())
+				.build();
+		
+		VerifyRealName verifyRealName = new VerifyRealName();
+		String result = verifyRealName.verify(jsonData.toString());
+		
+		System.out.println("result : " + result.trim());
+		
+		assertNotNull(result);
+		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
+	}
+	
+	@Test
+	public void 정상동작확인_수협() {
+		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
+				.setBank_cd("007")
+				.setSearch_acct_no("02602123171")
+				.setAcnm_no("710307")
+				.setIche_amt("0")
+				.setTrsc_seq_no(getRandomNum())
+				.build();
+		
+		VerifyRealName verifyRealName = new VerifyRealName();
+		String result = verifyRealName.verify(jsonData.toString());
+		
+		System.out.println("result : " + result.trim());
+		
+		assertNotNull(result);
+		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
+	}	
+	
+	@Test
+	public void 정상동작확인_우리은행() {
+		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
+				.setBank_cd("020")
+				.setSearch_acct_no("1006502226237")
+				.setAcnm_no("860914")
+				.setIche_amt("0")
+				.setTrsc_seq_no(getRandomNum())
+				.build();
+		
+		VerifyRealName verifyRealName = new VerifyRealName();
+		String result = verifyRealName.verify(jsonData.toString());
+		
+		System.out.println("result : " + result.trim());
+		
+		assertNotNull(result);
+		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
+	}
+	
+	@Test
+	public void 정상동작확인_제일은행() {
+		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
+				.setBank_cd("023")
+				.setSearch_acct_no("86010014628")
+				.setAcnm_no("110101")
+				.setIche_amt("0")
+				.setTrsc_seq_no(getRandomNum())
+				.build();
+		
+		VerifyRealName verifyRealName = new VerifyRealName();
+		String result = verifyRealName.verify(jsonData.toString());
+		
+		System.out.println("result : " + result.trim());
+		
+		assertNotNull(result);
+		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
+	}
+	
+	@Test
+	public void 정상동작확인_씨티은행() {
+		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
+				.setBank_cd("027")
+				.setSearch_acct_no("3040176126401")
+				.setAcnm_no("771112")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();

@@ -32,6 +32,26 @@ public class VerifyRealNameTests {
 		System.out.println("result : " + result.trim());
 	}
 	
+	@Test
+	public void 정상동작확인_신한은행2() {
+		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
+				.setBank_cd("002")
+				.setSearch_acct_no("02026007408704")
+				.setAcnm_no("640524")
+				.setIche_amt("0")
+				.setTrsc_seq_no("0000002")
+				.build();
+		
+		VerifyRealName verifyRealName = new VerifyRealName();
+		String result = verifyRealName.verify(jsonData.toString());
+		
+		System.out.println("result : " + result.trim());
+		
+		assertNotNull(result);
+		assertEquals("0000", getDataFromResponse(result, "RSLT_CD"));
+		System.out.println("result : " + result.trim());
+	}
+	
 	private String getDataFromResponse(String response, String key) {
 		String value = null;
 		

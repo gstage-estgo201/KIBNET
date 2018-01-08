@@ -4,5 +4,7 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="lib" path="/Users/estgo201/Dev/Docs/KIBDNET/KIBNET_카이렉스_전문설계서/계좌검증(1원인증)서비스/kibnet_java_sample_lib/checkpay-security-0.0.5.jar"/>
+	<classpathentry kind="lib" path="/Users/estgo201/Dev/Docs/KIBDNET/KIBNET_카이렉스_전문설계서/계좌검증(1원인증)서비스/kibnet_java_sample_lib/commons-codec-1.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -53,7 +53,7 @@ public class VerifyAccountTests {
 		
 		assertNotNull(result);
 		ObjectMapper mapper = new ObjectMapper();
-		System.out.println("mapper : " + mapper.convertValue(result, ResponseData.class));
+		System.out.println("mapper : " + mapper.convertValue(jsonData_realName.getJsonData(), ResponseData.class));
 		
 		assertEquals("000", JsonUtil.getDataFromJsonObject(result, "RSLT_CD"));
 		// TODO 예금주명 일치 시 1원 입금 정보 popup 노출

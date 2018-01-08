@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -51,7 +52,10 @@ public class VerifyAccountTests {
 		
 		String resp_data = getDataFromResponse(result, "RESP_DATA");
 //		assertEquals(randomNum, getDataFromResponse(resp_data, "ACCT_NM"));	//	1.예금주
-		assertEquals(randomNum, getDataFromResponse(resp_data, "TRSC_SEQ_NO"));
+		
+		
+		getJsonStringFromArray(getDataFromResponse(resp_data, "TRSC_SEQ_NO"));
+//		assertEquals(randomNum, getDataFromResponse(resp_data, "TRSC_SEQ_NO"));
 	}
 	
 	private String getDataFromResponse(String response, String key) {
@@ -67,6 +71,21 @@ public class VerifyAccountTests {
 		}
 				
 		return value;
+	}
+	
+	private String getJsonStringFromArray(String arrayString) {
+		JSONParser parser = new JSONParser();
+		try {
+			JSONArray jsonArray = (JSONArray)parser.parse(arrayString);
+			for(Object o : jsonArray) {
+				System.out.println("ooo : " + o);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	private String getRandomNum() {

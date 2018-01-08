@@ -21,6 +21,9 @@ public class JsonData_Account {
 		this.ptst_txt = builder.ptst_txt;
 		this.verify_tp = builder.verify_tp;
 	}
+	public String getCrypt_key() {
+		return this.crypt_key;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public String getUrlString() {

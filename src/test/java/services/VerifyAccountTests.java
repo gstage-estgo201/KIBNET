@@ -18,11 +18,10 @@ import common.CommonVariables;
 
 public class VerifyAccountTests {
 	private Set<String> randomNumSet = new HashSet<String>();
-	private JSONParser parser;
 	
 	@Before
 	public void before() {
-		parser = new JSONParser();
+		
 	}
 	
 	@Test
@@ -54,11 +53,11 @@ public class VerifyAccountTests {
 		System.out.println("result : " + result.trim());
 		
 		assertNotNull(result);
-		assertEquals("000", getDataFromJsonObject(result, "RSLT_CD"));
+		assertEquals("000", JsonUtil.getDataFromJsonObject(result, "RSLT_CD"));
 		
-		String resp_data = getJsonObjectInJsonArray(result, "RESP_DATA");
+		String resp_data = JsonUtil.getJsonObjectInJsonArray(result, "RESP_DATA");
 		
-		assertEquals(randomNum, getDataFromJsonObject(resp_data, "TRSC_SEQ_NO"));		//	거래일련번호
+		assertEquals(randomNum, JsonUtil.getDataFromJsonObject(resp_data, "TRSC_SEQ_NO"));		//	거래일련번호
 		
 		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
 //		assertEquals(randomNum, getDataFromJsonObject(resp_data, "ACCT_NM"));			//	1.예금주
@@ -76,40 +75,17 @@ public class VerifyAccountTests {
 		VerifyAccount verifyAccount = new VerifyAccount();
 		String result_100 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_100, jsonData_720.getUrlString());
 		System.out.println("result_100 : " + result_100);
+		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_100, "RC"));
+		
+		String encEV = JsonUtil.getDataFromJsonObject(result_100, "EV");
+		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "fnni_cd", jsonData_720));
+		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "current_dtime", jsonData_720));
+		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_sdtime", jsonData_720));
+		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_edtime", jsonData_720));
 		
 //		Step3
 		String result_720 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_720, jsonData_720.getUrlString());
 		System.out.println("result_720 : " + result_720);
-	}
-	
-	private String getDataFromJsonObject(String response, String key) {
-		String value = null;
-		
-		try {
-			JSONObject object = (JSONObject)parser.parse(response);
-			value = object.get(key).toString();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
-		return value;
-	}
-	
-	private String getJsonObjectInJsonArray(String response, String key) {
-		
-		String jsonArrayString = null;
-		String result = null;
-		try {
-			JSONObject jsonObject = (JSONObject)parser.parse(response);
-			jsonArrayString = jsonObject.get(key).toString();
-			JSONArray jsonArray = (JSONArray)parser.parse(jsonArrayString);
-			
-			result = jsonArray.get(0).toString();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return result;
 	}
 	
 	private String getRandomNum() {

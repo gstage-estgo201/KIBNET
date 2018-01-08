@@ -48,17 +48,17 @@ public class VerifyAccountTests {
 		System.out.println("result : " + result.trim());
 		
 		assertNotNull(result);
-		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
+		assertEquals("000", getDataFromJsonObject(result, "RSLT_CD"));
 		
-		String resp_data = getDataFromResponse(result, "RESP_DATA");
-//		assertEquals(randomNum, getDataFromResponse(resp_data, "ACCT_NM"));	//	1.예금주
+		String resp_data = getJsonObjectInJsonArray(result, "RESP_DATA");
 		
+		assertEquals(randomNum, getDataFromJsonObject(resp_data, "TRSC_SEQ_NO"));		//	거래일련번호
+		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
+		assertEquals(randomNum, getDataFromJsonObject(resp_data, "ACCT_NM"));			//	1.예금주		
 		
-		getDataFromArrayInResponse(result, "RESP_DATA");
-//		assertEquals(randomNum, getDataFromResponse(resp_data, "TRSC_SEQ_NO"));
 	}
 	
-	private String getDataFromResponse(String response, String key) {
+	private String getDataFromJsonObject(String response, String key) {
 		String value = null;
 		
 		JSONParser parser = new JSONParser();
@@ -73,23 +73,20 @@ public class VerifyAccountTests {
 		return value;
 	}
 	
-	private String getDataFromArrayInResponse(String response, String key) {
+	private String getJsonObjectInJsonArray(String response, String key) {
 		JSONParser parser = new JSONParser();
 		String jsonArrayString = null;
-		
+		String result = null;
 		try {
 			JSONObject jsonObject = (JSONObject)parser.parse(response);
 			jsonArrayString = jsonObject.get(key).toString();
 			JSONArray jsonArray = (JSONArray)parser.parse(jsonArrayString);
 			
-			for(Object o : jsonArray) {
-				System.out.println("ooo : " + o);
-			}
+			result = jsonArray.get(0).toString();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		return null;
+		return result;
 	}
 	
 	private String getRandomNum() {

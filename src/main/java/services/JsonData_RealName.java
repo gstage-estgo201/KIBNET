@@ -4,16 +4,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 
-public class JsonData {
-	private String secr_key;
-	private String key;
+public class JsonData_RealName {
+	private final String secr_key;
+	private final String key;
 	private String bank_cd;
 	private String search_acct_no;
 	private String acnm_no;
-	private String iche_amt;
+	private String iche_amt = "";
 	private String trsc_seq_no;
 	
-	private JsonData(Builder builder) {
+	private JsonData_RealName(Builder builder) {
 		this.secr_key = builder.secr_key;
 		this.key = builder.key;
 		this.bank_cd = builder.bank_cd;
@@ -24,22 +24,21 @@ public class JsonData {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
-	public String toString() {
+	public String getJsonData() {
 		JSONObject jsonData = new JSONObject();
-		jsonData.put(JsonDataType.SECR_KEY, this.secr_key);
-		jsonData.put(JsonDataType.KEY, this.key);
+		jsonData.put(JsonData_InputType.SECR_KEY, this.secr_key);
+		jsonData.put(JsonData_InputType.KEY, this.key);
 		
 		JSONArray reqData = new JSONArray();
 		JSONObject reqDataValue = new JSONObject();
-		reqDataValue.put(JsonDataType.BANK_CD, this.bank_cd);
-		reqDataValue.put(JsonDataType.SEARCH_ACCT_NO, this.search_acct_no);
-		reqDataValue.put(JsonDataType.ACNM_NO, this.acnm_no);
-		reqDataValue.put(JsonDataType.ICHE_AMT, this.iche_amt);
-		reqDataValue.put(JsonDataType.TRSC_SEQ_NO, this.trsc_seq_no);
+		reqDataValue.put(JsonData_InputType.BANK_CD, this.bank_cd);
+		reqDataValue.put(JsonData_InputType.SEARCH_ACCT_NO, this.search_acct_no);
+		reqDataValue.put(JsonData_InputType.ACNM_NO, this.acnm_no);
+		reqDataValue.put(JsonData_InputType.ICHE_AMT, this.iche_amt);
+		reqDataValue.put(JsonData_InputType.TRSC_SEQ_NO, this.trsc_seq_no);
 		reqData.add(reqDataValue);
 		
-		jsonData.put("REQ_DATA", reqData);
+		jsonData.put(JsonData_InputType.REQ_DATA, reqData);
 		
 		System.out.println("jsonData : " + jsonData);
 		
@@ -85,14 +84,17 @@ public class JsonData {
 			return this;
 		}
 		
-		public JsonData build() {
-			return new JsonData(this);
+		public JsonData_RealName build() {
+			return new JsonData_RealName(this);
 		}
 	}
 
-	private enum JsonDataType {
-		SECR_KEY, KEY, BANK_CD, SEARCH_ACCT_NO, ACNM_NO, ICHE_AMT, TRSC_SEQ_NO
+	private enum JsonData_InputType {
+		SECR_KEY, KEY, REQ_DATA, BANK_CD, SEARCH_ACCT_NO, ACNM_NO, ICHE_AMT, TRSC_SEQ_NO
 	}
 	
+	enum JsonData_OutputType{
+		RSLT_CD, RSLT_MG, RESP_DATA, ACCT_NM, TRSC_SEQ_NO
+	}
 	
 }

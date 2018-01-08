@@ -8,15 +8,15 @@ import java.net.URL;
 
 import common.CommonVariables;
 
-public class VerifyRealName {
+public class VerifyAccount {
 	
 	private HttpURLConnection connection;
 	private String responseData;
 	
-	public String verify(String jsonData) {
+	public String verify(String urlString) {
 		
 		try {
-			connection = (HttpURLConnection)new URL(CommonVariables.VERIFY_NAME_URL + "?JSONData=" + jsonData).openConnection();
+			connection = (HttpURLConnection)new URL(CommonVariables.VERIFY_ACCOUNT_URL + CommonVariables.SERVICE_CONTENT_720 + urlString).openConnection();
 			
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
@@ -40,7 +40,7 @@ public class VerifyRealName {
 			while ((length = input.read(buf)) != -1) {
 			    out.write(buf, 0, length);
 			}
-			responseData = new String(out.toByteArray(), "euc-kr");
+			responseData = new String(out.toByteArray(), "UTF-8");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

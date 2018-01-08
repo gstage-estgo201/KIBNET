@@ -11,30 +11,36 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.junit.Before;
 import org.junit.Test;
 
 import common.CommonVariables;
 
 public class VerifyAccountTests {
 	private Set<String> randomNumSet = new HashSet<String>();
+	private JSONParser parser;
+	
+	@Before
+	public void before() {
+		parser = new JSONParser();
+	}
 	
 	@Test
 	public void 계좌검증_정상동작_확인() {
-//	기준		화면설계서 https://4akpgl.axshare.com/#g=1&p=%EB%B3%B8%EC%9D%B8_%EA%B3%84%EC%A2%8C_%EB%93%B1%EB%A1%9D
-//	Step1			4. 본인 계좌 등록 신청 버튼 클릭 시 1.예금주, 2.예금은행, 3.계좌번호를 기준으로 아래순서로 서비스 실행
-//	Step2	coocon 성명조회 -> 
-//	Step3	kibnet 은행시간검증 -> 
-//	Step4	kibnet 계좌검증 수행함
-//	Step5	kibnet 회원이 통장에 찍힌 5.인증번호 입력 후 
-//	Step6			6.인증번호 확인 버튼 클릭
-//	Step7	kibnet 계좌검증확인 서비스 실행
+//	기준		화면설계서 https://4akpgl.axshare.com/#g=1&p=%EB%B3%B8%EC%9D%B8_%EA%B3%84%EC%A2%8C_%EB%93%B1%EB%A1%9D			
+//	Step1	coocon 성명조회 : 4. 본인 계좌 등록 신청 버튼 클릭 시  1.예금주, 2.예금은행, 3.계좌번호를 기준으로 아래순서로 서비스 실행
+//	Step2	kibnet 은행시간검증 -> 
+//	Step3	kibnet 계좌검증 수행함
+//	Step4	kibnet 회원이 통장에 찍힌 5.인증번호 입력 후 
+//	Step5			6.인증번호 확인 버튼 클릭
+//	Step6	kibnet 계좌검증확인 서비스 실행
 		
 //		Step1
 		String randomNum = getRandomNum();
-		String bank_CD = Bank_CD.농협은행.getCD();	//	2.예금은행
-		String acct_no = "14902597746";			//	3.계좌번호
+		String bank_CD = Bank_CD.농협은행.getCD();	//	2.예금은행 from user input
+		String acct_no = "14902597746";			//	3.계좌번호 from user input
 		
-		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
+		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd(bank_CD)
 				.setSearch_acct_no(acct_no)
 				.setAcnm_no("")
@@ -43,7 +49,7 @@ public class VerifyAccountTests {
 				.build();
 		
 		VerifyRealName verifyRealName = new VerifyRealName();
-		String result = verifyRealName.verify(jsonData.toString());
+		String result = verifyRealName.verify(jsonData.getJsonData());
 		
 		System.out.println("result : " + result.trim());
 		
@@ -53,15 +59,30 @@ public class VerifyAccountTests {
 		String resp_data = getJsonObjectInJsonArray(result, "RESP_DATA");
 		
 		assertEquals(randomNum, getDataFromJsonObject(resp_data, "TRSC_SEQ_NO"));		//	거래일련번호
-		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
-		assertEquals(randomNum, getDataFromJsonObject(resp_data, "ACCT_NM"));			//	1.예금주		
 		
+		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
+//		assertEquals(randomNum, getDataFromJsonObject(resp_data, "ACCT_NM"));			//	1.예금주
+		
+//		Step2
+//		은행시간 검증
+		
+//		Step3
+		JsonData_Account jsonData_720 = new JsonData_Account.Builder(CommonVariables.ID, CommonVariables.CRYPT_KEY)
+				.setFnni_cd("004")
+				.setAcct_no("772210258507")
+				.setMemb_nm("홍길동")
+				.setPtst_txt("체크")
+				.setVerify_tp("N")
+				.build();
+		
+		VerifyAccount verifyAccount = new VerifyAccount();
+		String result_720 = verifyAccount.verify(jsonData_720.getUrlString());
+		System.out.println("result_720 : " + result_720);
 	}
 	
 	private String getDataFromJsonObject(String response, String key) {
 		String value = null;
 		
-		JSONParser parser = new JSONParser();
 		try {
 			JSONObject object = (JSONObject)parser.parse(response);
 			value = object.get(key).toString();
@@ -74,7 +95,7 @@ public class VerifyAccountTests {
 	}
 	
 	private String getJsonObjectInJsonArray(String response, String key) {
-		JSONParser parser = new JSONParser();
+		
 		String jsonArrayString = null;
 		String result = null;
 		try {

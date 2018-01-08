@@ -29,12 +29,16 @@ public class VerifyAccountTests {
 //	Step7	kibnet 계좌검증확인 서비스 실행
 		
 //		Step1
+		String randomNum = getRandomNum();
+		String bank_CD = Bank_CD.농협은행.getCD();	//	2.예금은행
+		String acct_no = "14902597746";			//	3.계좌번호
+		
 		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
-				.setBank_cd(Bank_CD.농협은행.getCD())	//	2.예금은행
-				.setSearch_acct_no("14902597746")	//	3.계좌번호
+				.setBank_cd(bank_CD)
+				.setSearch_acct_no(acct_no)
 				.setAcnm_no("")
 				.setIche_amt("0")
-				.setTrsc_seq_no(getRandomNum())
+				.setTrsc_seq_no(randomNum)
 				.build();
 		
 		VerifyRealName verifyRealName = new VerifyRealName();
@@ -44,7 +48,10 @@ public class VerifyAccountTests {
 		
 		assertNotNull(result);
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
-		System.out.println(getDataFromResponse(result, "RESP_DATA"));
+		
+		String resp_data = getDataFromResponse(result, "RESP_DATA");
+//		assertEquals(randomNum, getDataFromResponse(resp_data, "ACCT_NM"));	//	1.예금주
+		assertEquals(randomNum, getDataFromResponse(resp_data, "TRSC_SEQ_NO"));
 	}
 	
 	private String getDataFromResponse(String response, String key) {

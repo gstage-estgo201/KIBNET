@@ -4,8 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import common.CommonVariables;
 
@@ -49,12 +51,27 @@ public class VerifyAccount {
 		
 	}
 	
-	private void checkBankServiceTime(String urlString) {
+	public boolean isBankSvcTime(String current_dtime, String svc_stop_sdtime, String svc_stop_edtime) {
+		Date curDate = null;
+		Date svcSdTime = null;
+		Date svcEdTime = null;
+				
 		try {
-			HttpURLConnection connection = (HttpURLConnection)new URL(CommonVariables.VERIFY_ACCOUNT_URL + CommonVariables.SERVICE_CONTENT_720 + urlString).openConnection();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			curDate = new SimpleDateFormat("yyyyMMddHHmmss").parse(current_dtime);
+			svcSdTime = new SimpleDateFormat("yyyyMMddHHmmss").parse(svc_stop_sdtime);
+			svcEdTime = new SimpleDateFormat("yyyyMMddHHmmss").parse(svc_stop_edtime);
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("curDate : " + curDate);
+		System.out.println("svcSdTime : " + svcSdTime);
+		System.out.println("svcEdTime : " + svcEdTime);
+		
+		if(curDate.compareTo(svcSdTime) >= 0 &&
+				curDate.compareTo(svcEdTime) <= 0) {
+			return true;
+		}
+		return false;
 	}
 }

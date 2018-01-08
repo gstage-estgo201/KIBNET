@@ -21,7 +21,12 @@ public class JsonData_Account {
 		this.ptst_txt = builder.ptst_txt;
 		this.verify_tp = builder.verify_tp;
 	}
-	public String getCrypt_key() {
+	
+	public String get_fnni_cd() {
+		return this.fnni_cd;
+	}
+	
+	public String get_crypt_key() {
 		return this.crypt_key;
 	}
 	

@@ -1,16 +1,13 @@
 package services;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -77,15 +74,24 @@ public class VerifyAccountTests {
 		System.out.println("result_100 : " + result_100);
 		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_100, "RC"));
 		
-		String encEV = JsonUtil.getDataFromJsonObject(result_100, "EV");
-		System.out.println("fnni_cd : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "fnni_cd", jsonData_720));
-		System.out.println("current_dtime : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "current_dtime", jsonData_720));
-		System.out.println("svc_stop_sdtime : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_sdtime", jsonData_720));
-		System.out.println("svc_stop_edtime : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_edtime", jsonData_720));
+		String encEV_100 = JsonUtil.getDataFromJsonObject(result_100, "EV");
+		
+		String ret_fnni_cd = JsonUtil.getDecryptDataFromJsonObject(encEV_100, "fnni_cd", jsonData_720);
+		String current_dtime = JsonUtil.getDecryptDataFromJsonObject(encEV_100, "current_dtime", jsonData_720);
+		String svc_stop_sdtime = JsonUtil.getDecryptDataFromJsonObject(encEV_100, "svc_stop_sdtime", jsonData_720);
+		String svc_stop_edtime = JsonUtil.getDecryptDataFromJsonObject(encEV_100, "svc_stop_edtime", jsonData_720);
+		
+		assertEquals(jsonData_720.get_fnni_cd(), ret_fnni_cd);
+		assertFalse(verifyAccount.isBankSvcTime(current_dtime, svc_stop_sdtime, svc_stop_edtime));	//	은행점검시간이 아님을 확임한다
+		// TODO 은행점검시간일 경우 elert popup을 노출 시킨다.
 		
 //		Step3
 		String result_720 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_720, jsonData_720.getUrlString());
 		System.out.println("result_720 : " + result_720);
+		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_720, "RC"));
+		
+		String encEV_720 = JsonUtil.getDataFromJsonObject(result_720, "EV");
+		System.out.println("encEV_720 : " + encEV_720);
 	}
 	
 	private String getRandomNum() {

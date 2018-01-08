@@ -28,7 +28,7 @@ public class JsonUtil {
 		String decData = null;
 		String value = null;
 		try {
-			decData = SecurityUtil.DecryptAesBase64(response, jsonData.getCrypt_key(), true);
+			decData = SecurityUtil.DecryptAesBase64(response, jsonData.get_crypt_key(), true);
 			value = getDataFromJsonObject(decData.substring(14), key);
 		} catch (Exception e) {
 			e.printStackTrace();

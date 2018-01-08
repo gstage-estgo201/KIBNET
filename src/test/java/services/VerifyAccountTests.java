@@ -91,7 +91,18 @@ public class VerifyAccountTests {
 		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_720, "RC"));
 		
 		String encEV_720 = JsonUtil.getDataFromJsonObject(result_720, "EV");
-		System.out.println("encEV_720 : " + encEV_720);
+		
+		String verify_tr_dt = JsonUtil.getDecryptDataFromJsonObject(encEV_720, "verify_tr_dt", jsonData_720);
+		String verify_tr_tm = JsonUtil.getDecryptDataFromJsonObject(encEV_720, "verify_tr_tm", jsonData_720);
+		String verify_tr_no = JsonUtil.getDecryptDataFromJsonObject(encEV_720, "verify_tr_no", jsonData_720);
+		String verify_len = JsonUtil.getDecryptDataFromJsonObject(encEV_720, "verify_len", jsonData_720);
+		String verify_txt = JsonUtil.getDecryptDataFromJsonObject(encEV_720, "verify_txt", jsonData_720);
+		
+		System.out.println("verify_tr_dt : " + verify_tr_dt);
+		System.out.println("verify_tr_tm : " + verify_tr_tm);
+		System.out.println("verify_tr_no : " + verify_tr_no);
+		System.out.println("verify_len : " + verify_len);
+		System.out.println("verify_txt : " + verify_txt);
 	}
 	
 	private String getRandomNum() {

@@ -30,9 +30,8 @@ public class VerifyAccountTests {
 		
 //		Step1
 		JsonData jsonData = new JsonData.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
-				.setBank_cd("011")	// 2
-				.setSearch_acct_no("14902597746")
-//				.setAcnm_no("860902")
+				.setBank_cd(Bank_CD.농협은행.getCD())	//	2.예금은행
+				.setSearch_acct_no("14902597746")	//	3.계좌번호
 				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
@@ -45,6 +44,7 @@ public class VerifyAccountTests {
 		
 		assertNotNull(result);
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
+		System.out.println(getDataFromResponse(result, "RESP_DATA"));
 	}
 	
 	private String getDataFromResponse(String response, String key) {

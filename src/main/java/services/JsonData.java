@@ -93,4 +93,6 @@ public class JsonData {
 	private enum JsonDataType {
 		SECR_KEY, KEY, BANK_CD, SEARCH_ACCT_NO, ACNM_NO, ICHE_AMT, TRSC_SEQ_NO
 	}
+	
+	
 }

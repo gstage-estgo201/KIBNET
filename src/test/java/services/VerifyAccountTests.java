@@ -59,13 +59,8 @@ public class VerifyAccountTests {
 		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
 //		assertEquals(randomNum, getDataFromJsonObject(resp_data, "ACCT_NM"));			//	1.예금주
 				
-		JsonData_Account jsonData_720 = new JsonData_Account.Builder(CommonVariables.ID, CommonVariables.CRYPT_KEY)
-				.setFnni_cd("004")
-				.setAcct_no("772210258507")
-				.setMemb_nm("홍길동")
-				.setPtst_txt("체크")
-				.setVerify_tp("N")
-				.build();
+		JsonData_Account jsonData_720 = new JsonData_Account(CommonVariables.ID, CommonVariables.CRYPT_KEY);
+		jsonData_720.setJsonData_100("004");
 		
 //		Step2
 //		은행시간 검증
@@ -81,11 +76,12 @@ public class VerifyAccountTests {
 		String svc_stop_sdtime = JsonUtil.getDecryptDataFromJsonObject(encEV_100, "svc_stop_sdtime", jsonData_720);
 		String svc_stop_edtime = JsonUtil.getDecryptDataFromJsonObject(encEV_100, "svc_stop_edtime", jsonData_720);
 		
-		assertEquals(jsonData_720.get_fnni_cd(), ret_fnni_cd);
 		assertFalse(verifyAccount.isBankSvcTime(current_dtime, svc_stop_sdtime, svc_stop_edtime));	//	은행점검시간이 아님을 확임한다
 		// TODO 은행점검시간일 경우 elert popup을 노출 시킨다.
 		
 //		Step3
+		
+		jsonData_720.setJsonData_720("004", "772210258507", "홍길동");
 		String result_720 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_720, jsonData_720.getUrlString());
 		System.out.println("result_720 : " + result_720);
 		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_720, "RC"));
@@ -103,6 +99,17 @@ public class VerifyAccountTests {
 		System.out.println("verify_tr_no : " + verify_tr_no);
 		System.out.println("verify_len : " + verify_len);
 		System.out.println("verify_txt : " + verify_txt);
+		
+		String verify_val = "123";	// Test server에서는 123입력 시 성공, 운영에서는 실제 고객 통장에 찍힌 검증번호를 입력하여야 함
+		jsonData_720.setJsonData_721(verify_tr_dt, verify_tr_no, verify_val);
+		String result_721 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_721, jsonData_720.getUrlString());
+		System.out.println("result_721 : " + result_721);
+		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_721, "RC"));
+		
+		String encEV_721 = JsonUtil.getDataFromJsonObject(result_720, "EV");
+		assertEquals(verify_tr_dt, JsonUtil.getDecryptDataFromJsonObject(encEV_721, "verify_tr_dt", jsonData_720));
+		assertEquals(verify_tr_no, JsonUtil.getDecryptDataFromJsonObject(encEV_721, "verify_tr_no", jsonData_720));
+		assertEquals(verify_val, JsonUtil.getDecryptDataFromJsonObject(encEV_721, "verify_val", jsonData_720));
 	}
 	
 	private String getRandomNum() {

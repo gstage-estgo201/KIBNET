@@ -21,6 +21,42 @@ public class JsonData_Account {
 		return this.crypt_key;
 	}
 	
+	public String getUrlString() {
+		String urlString = null;
+
+		trx_dt = new SimpleDateFormat("yyyyMMdd").format(new Date()); 
+		trx_tm = new SimpleDateFormat("HHmmss").format(new Date());
+		
+		if(jsonDataString == null) {
+			throw new RuntimeException("please set json data string");
+		}
+		
+		String reqEV = null;
+		String reqVV = null;
+		try {
+			reqEV = SecurityUtil.EncryptAesBase64(trx_dt + trx_tm + jsonDataString, this.crypt_key, true); 
+			reqVV = SecurityUtil.getHmacSha256(jsonDataString, this.crypt_key, true);	
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(reqEV == null || reqVV == null) {
+			System.out.println("EV : " + reqEV + ", VV : " + reqVV);
+			return null;
+		}
+		
+		urlString = "ID=" + this.id
+					+ "&RQ_DTIME=" + trx_dt + trx_tm
+					+ "&TNO=" + trx_dt + trx_tm
+					+ "&EV=" + reqEV
+			        + "&VV=" + reqVV 
+			        + "&EM=AES" 
+			        + "&VM=HmacSHA256";
+		
+		jsonDataString = null;
+		return urlString;
+	}	
+
 	@SuppressWarnings("unchecked")
 	public void setJsonData_100(String fnni_cd) {
 		JSONObject jsonData = new JSONObject();
@@ -50,42 +86,9 @@ public class JsonData_Account {
 		
 		jsonDataString = jsonData.toJSONString();
 	}
-	
-	public String getUrlString() {
-		String urlString = null;
-
-		trx_dt = new SimpleDateFormat("yyyyMMdd").format(new Date()); 
-		trx_tm = new SimpleDateFormat("HHmmss").format(new Date());
-		
-		String reqEV = null;
-		String reqVV = null;
-		try {
-			reqEV = SecurityUtil.EncryptAesBase64(trx_dt + trx_tm + jsonDataString, this.crypt_key, true); 
-			reqVV = SecurityUtil.getHmacSha256(jsonDataString, this.crypt_key, true);	
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		if(reqEV == null || reqVV == null) {
-			System.out.println("EV : " + reqEV + ", VV : " + reqVV);
-			return null;
-		}
-		
-		urlString = "ID=" + this.id
-					+ "&RQ_DTIME=" + trx_dt + trx_tm
-					+ "&TNO=" + trx_dt + trx_tm
-					+ "&EV=" + reqEV
-			        + "&VV=" + reqVV 
-			        + "&EM=AES" 
-			        + "&VM=HmacSHA256";
-		
-		return urlString;
-	}	
-
 
 	private enum InputType {
-		fnni_cd, acct_no, memb_nm, ptst_txt, verify_tp,
+		fnni_cd, acct_no, memb_nm, verify_tp, ptst_txt,
 		verify_tr_dt, verify_tr_no, verify_val;	//	계좌번호 검증확인(CPIF_AFFL_721.jct) 용도
 	}
-
 }

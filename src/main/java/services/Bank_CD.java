@@ -27,7 +27,9 @@ public enum Bank_CD {
 	산림조합중앙회("064"),
 	우체국("071"),
 	KEB하나은행("081"),
-	신한은행("088");
+	신한은행("088"),
+	K뱅크("089"),
+	카카오뱅크("090");
 	
 	private String cd;
 	Bank_CD(String cd){
@@ -37,5 +39,4 @@ public enum Bank_CD {
 	public String getCD() {
 		return cd;
 	}
-
 }

@@ -8,7 +8,6 @@ import java.util.Random;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.Test;
 
 import common.CommonVariables;
 
@@ -16,7 +15,7 @@ public class VerifyRealNameTests {
 	private String[][] dataArray = {
 			{"011", "14902597746", "860902", "0"}};
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_all() {
 		for(String[] data : dataArray) {
 			JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
@@ -37,7 +36,7 @@ public class VerifyRealNameTests {
 		}
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_농협은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("011")
@@ -56,7 +55,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_산업은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("002")
@@ -75,7 +74,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_기업은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("003")
@@ -94,7 +93,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_기업은행2() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("003")
@@ -113,12 +112,12 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_국민은행() {
 		// TODO 국민은행은 운영계좌로 확인 필요
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_외환은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("005")
@@ -137,7 +136,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_수협() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("007")
@@ -156,7 +155,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}	
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_우리은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("020")
@@ -175,7 +174,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_제일은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("023")
@@ -194,7 +193,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_씨티은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("027")
@@ -213,7 +212,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_대구은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("031")
@@ -232,7 +231,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_부산은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("032")
@@ -251,7 +250,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_제주은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("035")
@@ -270,7 +269,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_전북은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("037")
@@ -289,7 +288,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_전북은행2() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("037")
@@ -308,7 +307,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_경남은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("039")
@@ -327,7 +326,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_새마을금고() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("045")
@@ -346,7 +345,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 
-	@Test
+	//	@Test
 	public void 정상동작확인_신협() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("048")
@@ -365,7 +364,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_신협2() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("048")
@@ -384,7 +383,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_우체국() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("071")
@@ -403,7 +402,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+	//	@Test
 	public void 정상동작확인_신한은행() {
 		JsonData_RealName jsonData = new JsonData_RealName.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("088")

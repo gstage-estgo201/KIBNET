@@ -23,6 +23,7 @@ public class VerifyRealName {
 			connection.setRequestMethod("POST");
 			connection.setUseCaches(false);
 			
+//			header 보기
 //			for (Map.Entry<String, List<String>> header : connection.getHeaderFields().entrySet()) {
 //	            for (String value : header.getValue()) {
 //	                System.out.println(header.getKey() + " : " + value);

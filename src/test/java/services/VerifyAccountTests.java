@@ -78,10 +78,10 @@ public class VerifyAccountTests {
 		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_100, "RC"));
 		
 		String encEV = JsonUtil.getDataFromJsonObject(result_100, "EV");
-		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "fnni_cd", jsonData_720));
-		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "current_dtime", jsonData_720));
-		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_sdtime", jsonData_720));
-		System.out.println(JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_edtime", jsonData_720));
+		System.out.println("fnni_cd : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "fnni_cd", jsonData_720));
+		System.out.println("current_dtime : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "current_dtime", jsonData_720));
+		System.out.println("svc_stop_sdtime : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_sdtime", jsonData_720));
+		System.out.println("svc_stop_edtime : " + JsonUtil.getDecryptDataFromJsonObject(encEV, "svc_stop_edtime", jsonData_720));
 		
 //		Step3
 		String result_720 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_720, jsonData_720.getUrlString());

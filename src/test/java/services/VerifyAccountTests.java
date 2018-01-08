@@ -8,10 +8,12 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 
 import common.CommonVariables;
+import jsonData.ResponseData;
 
 public class VerifyAccountTests {
 	private Set<String> randomNumSet = new HashSet<String>();
@@ -50,6 +52,9 @@ public class VerifyAccountTests {
 		System.out.println("result : " + result.trim());
 		
 		assertNotNull(result);
+		ObjectMapper mapper = new ObjectMapper();
+		System.out.println("mapper : " + mapper.convertValue(result, ResponseData.class));
+		
 		assertEquals("000", JsonUtil.getDataFromJsonObject(result, "RSLT_CD"));
 		// TODO 예금주명 일치 시 1원 입금 정보 popup 노출
 		String resp_data = JsonUtil.getJsonObjectInJsonArray(result, "RESP_DATA");

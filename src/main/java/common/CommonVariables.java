@@ -12,7 +12,7 @@ public class CommonVariables {
 	
 	public final static String ID = "03420001";
 	public final static String CRYPT_KEY = "checkpa58Kid##79**#ekIhkd#1ssi*l";
-										    
+
 	public final static String SERVICE_CONTENT_100 = "CPIF_AFFL_100.jct?";
 	public final static String SERVICE_CONTENT_710 = "CPIF_AFFL_710.jct?";
 	public final static String SERVICE_CONTENT_720 = "CPIF_AFFL_720.jct?";

@@ -62,11 +62,7 @@ public class VerifyAccountTests {
 		
 		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
 //		assertEquals(randomNum, getDataFromJsonObject(resp_data, "ACCT_NM"));			//	1.예금주
-		
-//		Step2
-//		은행시간 검증
-		
-//		Step3
+				
 		JsonData_Account jsonData_720 = new JsonData_Account.Builder(CommonVariables.ID, CommonVariables.CRYPT_KEY)
 				.setFnni_cd("004")
 				.setAcct_no("772210258507")
@@ -75,8 +71,14 @@ public class VerifyAccountTests {
 				.setVerify_tp("N")
 				.build();
 		
+//		Step2
+//		은행시간 검증
 		VerifyAccount verifyAccount = new VerifyAccount();
-		String result_720 = verifyAccount.verify(jsonData_720.getUrlString());
+		String result_100 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_100, jsonData_720.getUrlString());
+		System.out.println("result_100 : " + result_100);
+		
+//		Step3
+		String result_720 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_720, jsonData_720.getUrlString());
 		System.out.println("result_720 : " + result_720);
 	}
 	

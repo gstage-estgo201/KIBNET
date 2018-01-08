@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import common.CommonVariables;
@@ -13,14 +14,13 @@ public class VerifyAccount {
 	private HttpURLConnection connection;
 	private String responseData;
 	
-	public String verify(String urlString) {
+	public String verify(String service, String urlString) {
 		
 		try {
-			connection = (HttpURLConnection)new URL(CommonVariables.VERIFY_ACCOUNT_URL + CommonVariables.SERVICE_CONTENT_720 + urlString).openConnection();
+			connection = (HttpURLConnection)new URL(CommonVariables.VERIFY_ACCOUNT_URL + service + urlString).openConnection();
 			
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
-			connection.setRequestMethod("POST");
 			connection.setUseCaches(false);
 			
 //			for (Map.Entry<String, List<String>> header : connection.getHeaderFields().entrySet()) {
@@ -47,5 +47,14 @@ public class VerifyAccount {
 		}
 		return responseData;
 		
+	}
+	
+	private void checkBankServiceTime(String urlString) {
+		try {
+			HttpURLConnection connection = (HttpURLConnection)new URL(CommonVariables.VERIFY_ACCOUNT_URL + CommonVariables.SERVICE_CONTENT_720 + urlString).openConnection();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

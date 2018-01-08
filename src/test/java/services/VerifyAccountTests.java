@@ -106,7 +106,7 @@ public class VerifyAccountTests {
 		System.out.println("result_721 : " + result_721);
 		assertEquals("0000", JsonUtil.getDataFromJsonObject(result_721, "RC"));
 		
-		String encEV_721 = JsonUtil.getDataFromJsonObject(result_720, "EV");
+		String encEV_721 = JsonUtil.getDataFromJsonObject(result_721, "EV");
 		assertEquals(verify_tr_dt, JsonUtil.getDecryptDataFromJsonObject(encEV_721, "verify_tr_dt", jsonData_720));
 		assertEquals(verify_tr_no, JsonUtil.getDecryptDataFromJsonObject(encEV_721, "verify_tr_no", jsonData_720));
 		assertEquals(verify_val, JsonUtil.getDecryptDataFromJsonObject(encEV_721, "verify_val", jsonData_720));

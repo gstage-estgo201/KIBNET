@@ -54,7 +54,7 @@ public class VerifyAccountTests {
 //		assertEquals(randomNum, getDataFromResponse(resp_data, "ACCT_NM"));	//	1.예금주
 		
 		
-		getJsonStringFromArray(getDataFromResponse(resp_data, "TRSC_SEQ_NO"));
+		getDataFromArrayInResponse(result, "RESP_DATA");
 //		assertEquals(randomNum, getDataFromResponse(resp_data, "TRSC_SEQ_NO"));
 	}
 	
@@ -73,15 +73,19 @@ public class VerifyAccountTests {
 		return value;
 	}
 	
-	private String getJsonStringFromArray(String arrayString) {
+	private String getDataFromArrayInResponse(String response, String key) {
 		JSONParser parser = new JSONParser();
+		String jsonArrayString = null;
+		
 		try {
-			JSONArray jsonArray = (JSONArray)parser.parse(arrayString);
+			JSONObject jsonObject = (JSONObject)parser.parse(response);
+			jsonArrayString = jsonObject.get(key).toString();
+			JSONArray jsonArray = (JSONArray)parser.parse(jsonArrayString);
+			
 			for(Object o : jsonArray) {
 				System.out.println("ooo : " + o);
 			}
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

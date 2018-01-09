@@ -26,7 +26,7 @@ public class VerifyAccountTests {
 		
 	}
 	
-	@Test
+//	@Test
 	public void test() {
 		String result = "{\"RESP_DATA\":[{\"ACCT_NM\":\"달나라가자\",\"TRSC_SEQ_NO\":\"0451677\"}],\"RSLT_MSG\":\"정상처리\",\"RSLT_CD\":\"000\"}";
 		System.out.println("original result : " + result);
@@ -54,7 +54,7 @@ public class VerifyAccountTests {
 		}
 	}
 	
-//	@Test
+	@Test
 	public void 계좌검증_정상동작_확인() {
 //	기준		화면설계서 https://4akpgl.axshare.com/#g=1&p=%EB%B3%B8%EC%9D%B8_%EA%B3%84%EC%A2%8C_%EB%93%B1%EB%A1%9D			
 //			1.예금주, 2.예금은행, 3.계좌번호를 입력 후 4. 본인 계좌 등록 신청 버튼 클릭 시

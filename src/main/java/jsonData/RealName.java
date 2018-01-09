@@ -6,10 +6,10 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseData {
+public class RealName {
 	
 	@JsonProperty("RESP_DATA")
-	private List<ResponseData.Resp_data_map> resp_data;
+	private List<RealName.Resp_data> resp_data;
 
 	@JsonProperty("RSLT_CD")
 	private String rslt_cd;
@@ -17,7 +17,7 @@ public class ResponseData {
 	@JsonProperty("RSLT_MSG")
 	private String rslt_msg;
 
-	public List<ResponseData.Resp_data_map> getResp_data(){
+	public List<RealName.Resp_data> getResp_data(){
 		return this.resp_data;
 	}
 
@@ -30,7 +30,7 @@ public class ResponseData {
 	}
 
 	
-	public static class Resp_data_map{
+	public static class Resp_data{
 	
 		@JsonProperty("ACCT_NM")
 		private String acct_nm;

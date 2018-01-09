@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.CommonVariables;
-import jsonData.ResponseData;
+import jsonData.RealName;
 
 public class VerifyAccountTests {
 	private Set<String> randomNumSet = new HashSet<String>();
@@ -31,10 +31,10 @@ public class VerifyAccountTests {
 		String result = "{\"RESP_DATA\":[{\"ACCT_NM\":\"달나라가자\",\"TRSC_SEQ_NO\":\"0451677\"}],\"RSLT_MSG\":\"정상처리\",\"RSLT_CD\":\"000\"}";
 		System.out.println("original result : " + result);
 		ObjectMapper mapper = new ObjectMapper();
-		ResponseData responseData = new ResponseData();
+		RealName responseData = new RealName();
 		
 		try {
-			responseData = mapper.readValue(result, ResponseData.class);
+			responseData = mapper.readValue(result, RealName.class);
 			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData));
 			System.out.println("responseData resp_data: " + responseData.toString());
 			System.out.println("responseData rslt_cd : " + responseData.getRslt_cd());
@@ -84,10 +84,10 @@ public class VerifyAccountTests {
 		
 		assertNotNull(result);
 		ObjectMapper mapper = new ObjectMapper();
-		ResponseData responseData = new ResponseData();
+		RealName responseData = new RealName();
 
 		try {
-			responseData = mapper.readValue(result, ResponseData.class);
+			responseData = mapper.readValue(result, RealName.class);
 			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData));
 			System.out.println("responseData rslt_cd : " + responseData.getRslt_cd());
 			System.out.println("responseData rslt_msg : " + responseData.getRslt_msg());
@@ -101,13 +101,12 @@ public class VerifyAccountTests {
 			e.printStackTrace();
 		}
 		
-		assertEquals("000", JsonUtil.getDataFromJsonObject(result, "RSLT_CD"));
+		assertEquals("000", responseData.getRslt_cd());
 		// TODO 예금주명 일치 시 1원 입금 정보 popup 노출
-		String resp_data = JsonUtil.getJsonObjectInJsonArray(result, "RESP_DATA");
-		assertEquals(randomNum, JsonUtil.getDataFromJsonObject(resp_data, "TRSC_SEQ_NO"));		//	거래일련번호 확인
+		assertEquals(randomNum, responseData.getResp_data().get(0).getTrsc_seq_no());		//	거래일련번호 확인
 		
 		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
-//		assertEquals("예금주", getDataFromJsonObject(resp_data, "ACCT_NM"));			//	1.예금주 TODO FRONT
+//		assertEquals("예금주", responseData.getResp_data().get(0).getAcct_nm());			//	1.예금주 TODO FRONT
 				
 //		Step2 - 은행시간 검증
 		JsonData_Account jsonData_account = new JsonData_Account(CommonVariables.ID, CommonVariables.CRYPT_KEY);

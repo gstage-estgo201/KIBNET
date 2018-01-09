@@ -4,10 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +56,15 @@ public class VerifyAccountTests {
 		
 		assertNotNull(result);
 		ObjectMapper mapper = new ObjectMapper();
-		System.out.println("mapper : " + mapper.convertValue(jsonData_realName.getJsonData(), ResponseData.class));
+		try {
+			System.out.println("mapper : " + mapper.readValue(jsonData_realName.getJsonData(), ResponseData.class));
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		assertEquals("000", JsonUtil.getDataFromJsonObject(result, "RSLT_CD"));
 		// TODO 예금주명 일치 시 1원 입금 정보 popup 노출

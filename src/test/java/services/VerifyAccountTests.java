@@ -27,6 +27,34 @@ public class VerifyAccountTests {
 	}
 	
 	@Test
+	public void test() {
+		String result = "{\"RESP_DATA\":[{\"ACCT_NM\":\"달나라가자\",\"TRSC_SEQ_NO\":\"0451677\"}],\"RSLT_MSG\":\"정상처리\",\"RSLT_CD\":\"000\"}";
+		System.out.println("original result : " + result);
+		ObjectMapper mapper = new ObjectMapper();
+		ResponseData responseData = new ResponseData();
+		
+		try {
+			responseData = mapper.readValue(result, ResponseData.class);
+			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData));
+			System.out.println("responseData resp_data: " + responseData.toString());
+			System.out.println("responseData rslt_cd : " + responseData.getRslt_cd());
+			System.out.println("responseData rslt_msg : " + responseData.getRslt_msg());
+			System.out.println("responseData resp_data acct_nm: " + responseData.getResp_data().get(0).getAcct_nm());
+			System.out.println("responseData resp_data trsc_seq_no : " + responseData.getResp_data().get(0).getTrsc_seq_no());
+			
+		} catch (JsonParseException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+//	@Test
 	public void 계좌검증_정상동작_확인() {
 //	기준		화면설계서 https://4akpgl.axshare.com/#g=1&p=%EB%B3%B8%EC%9D%B8_%EA%B3%84%EC%A2%8C_%EB%93%B1%EB%A1%9D			
 //			1.예금주, 2.예금은행, 3.계좌번호를 입력 후 4. 본인 계좌 등록 신청 버튼 클릭 시
@@ -56,8 +84,15 @@ public class VerifyAccountTests {
 		
 		assertNotNull(result);
 		ObjectMapper mapper = new ObjectMapper();
+		ResponseData responseData = new ResponseData();
+
 		try {
-			System.out.println("mapper : " + mapper.readValue(jsonData_realName.getJsonData(), ResponseData.class));
+			responseData = mapper.readValue(result, ResponseData.class);
+			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData));
+			System.out.println("responseData rslt_cd : " + responseData.getRslt_cd());
+			System.out.println("responseData rslt_msg : " + responseData.getRslt_msg());
+			System.out.println("responseData resp_data acct_nm: " + responseData.getResp_data().get(0).getAcct_nm());
+			System.out.println("responseData resp_data trsc_seq_no : " + responseData.getResp_data().get(0).getTrsc_seq_no());
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

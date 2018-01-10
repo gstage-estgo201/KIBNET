@@ -15,7 +15,7 @@ import jsonData.RealName_Req;
 
 public class VerifyRealNameTests {
 	private String[][] dataArray = {
-			{"011", "14902597746", "860902", "0"}};
+			{"011", "14902597746", "", "0"}};
 	
 	@Test
 	public void 정상동작확인_all() {
@@ -43,7 +43,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("011")
 				.setSearch_acct_no("14902597746")
-				.setAcnm_no("860902")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -62,7 +62,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("002")
 				.setSearch_acct_no("02026007408704")
-				.setAcnm_no("640524")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -81,7 +81,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("003")
 				.setSearch_acct_no("21701322303023")
-				.setAcnm_no("711205")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -100,7 +100,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("003")
 				.setSearch_acct_no("01904232902016")
-				.setAcnm_no("790924")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -124,7 +124,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("005")
 				.setSearch_acct_no("620199910659")
-				.setAcnm_no("850101")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -143,7 +143,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("007")
 				.setSearch_acct_no("02602123171")
-				.setAcnm_no("710307")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -162,7 +162,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("020")
 				.setSearch_acct_no("1006502226237")
-				.setAcnm_no("860914")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -181,7 +181,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("023")
 				.setSearch_acct_no("86010014628")
-				.setAcnm_no("110101")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -200,7 +200,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("027")
 				.setSearch_acct_no("3040176126401")
-				.setAcnm_no("771112")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -219,7 +219,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("031")
 				.setSearch_acct_no("505102678658")
-				.setAcnm_no("991111")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -238,7 +238,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("032")
 				.setSearch_acct_no("1010000014002")
-				.setAcnm_no("500331")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -257,7 +257,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("035")
 				.setSearch_acct_no("3301000013")
-				.setAcnm_no("711111")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -276,7 +276,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("037")
 				.setSearch_acct_no("501219999997")
-				.setAcnm_no("700407")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -295,7 +295,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("037")
 				.setSearch_acct_no("501220048478")
-				.setAcnm_no("700407")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -314,7 +314,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("039")
 				.setSearch_acct_no("502210229948")
-				.setAcnm_no("751105")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -333,7 +333,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("045")
 				.setSearch_acct_no("9003166420461")
-				.setAcnm_no("700101")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -352,7 +352,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("048")
 				.setSearch_acct_no("132548099293")
-				.setAcnm_no("850104")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -371,7 +371,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("048")
 				.setSearch_acct_no("135000020248")
-				.setAcnm_no("1148202152")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -390,7 +390,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("071")
 				.setSearch_acct_no("01001702000029")
-				.setAcnm_no("450429")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();
@@ -409,7 +409,7 @@ public class VerifyRealNameTests {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("088")
 				.setSearch_acct_no("100020908927")
-				.setAcnm_no("3148204065")
+				.setAcnm_no("")
 				.setIche_amt("0")
 				.setTrsc_seq_no(getRandomNum())
 				.build();

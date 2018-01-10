@@ -54,6 +54,8 @@ public class Account_Req {
 			        + "&VM=HmacSHA256";
 		
 		jsonDataString = null;
+		
+		System.out.println("Account urlString : " + urlString);
 		return urlString;
 	}	
 

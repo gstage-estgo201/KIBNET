@@ -157,7 +157,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}	
 	
-	@Test
+//	@Test	// 203 Error : 계좌번호오류
 	public void 정상동작확인_우리은행() {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("020")
@@ -176,7 +176,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+//	@Test	//	247 Error : 기타처리불가
 	public void 정상동작확인_제일은행() {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("023")
@@ -195,7 +195,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+//	@Test	//	344 Error : 해당계좌없음
 	public void 정상동작확인_씨티은행() {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("027")
@@ -214,7 +214,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+//	@Test	//	344 Error : 해당계좌없음
 	public void 정상동작확인_대구은행() {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("031")
@@ -271,7 +271,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+//	@Test	// X11 Error : 해당제휴사 확인요망
 	public void 정상동작확인_전북은행() {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("037")
@@ -290,7 +290,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+//	@Test	// X11 Error : 해당제휴사 확인요망
 	public void 정상동작확인_전북은행2() {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("037")
@@ -328,7 +328,7 @@ public class VerifyRealNameTests {
 		assertEquals("000", getDataFromResponse(result, "RSLT_CD"));
 	}
 	
-	@Test
+//	@Test	// 525 Error : 거래불가
 	public void 정상동작확인_새마을금고() {
 		RealName_Req jsonData = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd("045")

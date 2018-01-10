@@ -5,9 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -211,6 +208,8 @@ public class VerifyAccountTests {
 			acct_no = inputData[1];
 			name = inputData[2];
 			
+			System.out.println("===== Scenario Test Start ====");
+			System.out.println("banj_cd : " + bank_cd + ", acct_no : " + acct_no + ", name : " + name);
 			AccountRegistration_Scenario(bank_cd, acct_no, name);
 		}
 		
@@ -345,5 +344,7 @@ public class VerifyAccountTests {
 		assertEquals(verify_tr_no, account_721_res.getVerify_tr_no());
 		assertEquals(verify_val, account_721_res.getVerify_val());
 		// TODO 인증번호가 일치하지 않을 시 "" alert popup 노출
+		
+		System.out.println("===== Scenario Test End ====");
 	}
 }

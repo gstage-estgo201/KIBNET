@@ -1,4 +1,4 @@
-package services;
+package common;
 
 public enum Bank_CD {
 	산업은행("002"),

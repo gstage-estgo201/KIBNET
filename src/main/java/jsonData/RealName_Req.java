@@ -1,10 +1,10 @@
-package services;
+package jsonData;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 
-public class JsonData_RealName {
+public class RealName_Req {
 	private final String secr_key;
 	private final String key;
 	private String bank_cd;
@@ -13,7 +13,7 @@ public class JsonData_RealName {
 	private String iche_amt = "";
 	private String trsc_seq_no;
 	
-	private JsonData_RealName(Builder builder) {
+	private RealName_Req(Builder builder) {
 		this.secr_key = builder.secr_key;
 		this.key = builder.key;
 		this.bank_cd = builder.bank_cd;
@@ -84,8 +84,8 @@ public class JsonData_RealName {
 			return this;
 		}
 		
-		public JsonData_RealName build() {
-			return new JsonData_RealName(this);
+		public RealName_Req build() {
+			return new RealName_Req(this);
 		}
 	}
 

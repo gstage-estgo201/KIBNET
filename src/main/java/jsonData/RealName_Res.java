@@ -5,11 +5,14 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import lombok.Getter;
+
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RealName {
+public class RealName_Res {
 	
 	@JsonProperty("RESP_DATA")
-	private List<RealName.Resp_data> resp_data;
+	private List<RealName_Res.Resp_data> resp_data;
 
 	@JsonProperty("RSLT_CD")
 	private String rslt_cd;
@@ -17,19 +20,19 @@ public class RealName {
 	@JsonProperty("RSLT_MSG")
 	private String rslt_msg;
 
-	public List<RealName.Resp_data> getResp_data(){
-		return this.resp_data;
-	}
+//	public List<RealName.Resp_data> getResp_data(){
+//		return this.resp_data;
+//	}
+//
+//	public String getRslt_cd() {
+//		return this.rslt_cd;
+//	}
+//	
+//	public String getRslt_msg() {
+//		return this.rslt_msg;
+//	}
 
-	public String getRslt_cd() {
-		return this.rslt_cd;
-	}
-	
-	public String getRslt_msg() {
-		return this.rslt_msg;
-	}
-
-	
+	@Getter
 	public static class Resp_data{
 	
 		@JsonProperty("ACCT_NM")
@@ -38,12 +41,12 @@ public class RealName {
 		@JsonProperty("TRSC_SEQ_NO")
 		private String trsc_seq_no;
 
-		public String getAcct_nm() {
-			return this.acct_nm;
-		}
-		
-		public String getTrsc_seq_no() {
-			return this.trsc_seq_no;
-		}
+//		public String getAcct_nm() {
+//			return this.acct_nm;
+//		}
+//		
+//		public String getTrsc_seq_no() {
+//			return this.trsc_seq_no;
+//		}
 	}
 }

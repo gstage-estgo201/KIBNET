@@ -1,4 +1,4 @@
-package services;
+package jsonData;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,12 +7,12 @@ import org.json.simple.JSONObject;
 
 import com.checkpay.util.SecurityUtil;
 
-public class JsonData_Account {
+public class Account_Req {
 	private final String id, crypt_key;
 	private String trx_dt, trx_tm;
 	private String jsonDataString = null;
 	
-	public JsonData_Account(String id, String crypt_key) {
+	public Account_Req(String id, String crypt_key) {
 		this.id = id;
 		this.crypt_key = crypt_key;
 	}

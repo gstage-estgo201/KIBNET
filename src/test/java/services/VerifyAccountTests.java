@@ -23,9 +23,10 @@ import jsonData.Account_721_Res;
 import jsonData.Account_Req;
 import jsonData.RealName_Req;
 import jsonData.RealName_Res;
+import util.Utils;
 
 public class VerifyAccountTests {
-	private Set<String> randomNumSet = new HashSet<String>();
+
 	private ObjectMapper mapper;
 	
 	@Before
@@ -34,7 +35,7 @@ public class VerifyAccountTests {
 	}
 	
 	@Test
-	public void account_100_test() {
+	public void account_100_res_test() {
 		String result = "{\"VV\":\"3Kgv5ZkECaj7FCUbmgbZfZniXOIx1IWDTaqgykY1L0g%3D\",\"COMMON_HEAD\":{\"ERROR\":false,\"MESSAGE\":\"\",\"CODE\":\"\"},\"RM\":\"정상\",\"VM\":\"HmacSHA256\",\"TNO\":\"20180109184511\",\"EV\":\"64jLj%2FSk%2FaCcA71FbZEqd59iY5hwdkMYtb6GtEYcuum5wkEeaCTlGv9WMNhE4cI53DOISz9OWHekkBM1SaM2n7Oos48fUWXLC6DZnOqwg1Zv%2F8oKy%2BR8Ni6gToS%2B27Go%2B2o0vtCDCClMLSJAsVvuyWctnC80ewbtux%2BU%2FBc2x3LBhWpEHEvlPTKJ2eKQ0I8B\",\"ID\":\"03420001\",\"RS_DTIME\":\"20180109184512\",\"EM\":\"AES\",\"RC\":\"0000\"}";
 		System.out.println("original result : " + result);
 		mapper = new ObjectMapper();
@@ -66,19 +67,16 @@ public class VerifyAccountTests {
 			assertNotNull(account_100_res.getSvc_stop_edtime());
 			
 		} catch (JsonParseException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	public void accunt_720_test() {
+	public void accunt_720_res_test() {
 		String result = "{\"VV\":\"%2B%2FhxacyW%2B1Bs2%2FicP7JtcuSUsFe0bGsc55QbWCTQbos%3D\",\"COMMON_HEAD\":{\"ERROR\":false,\"MESSAGE\":\"\",\"CODE\":\"\"},\"RM\":\"정상\",\"VM\":\"HmacSHA256\",\"TNO\":\"20180109184512\",\"EV\":\"64jLj%2FSk%2FaCcA71FbZEqd8Uf8rRRR1ItT15LRHIYvo%2BFKghtKlRseRLi7iFzM%2B6cKYjnSZCEk%2BHq%2BKNdJf2PzPsB2TGo3RE8v5svlP5BqR%2BX3rDZgsIq7ynbMrkK8q6Q4mMBAbJjvOpk4uwB7iUkmRh0w4Cy30JCkT%2FQLGWNlpI%3D\",\"ID\":\"03420001\",\"RS_DTIME\":\"20180109184512\",\"EM\":\"AES\",\"RC\":\"0000\"}";
 		System.out.println("original result : " + result);
 		mapper = new ObjectMapper();
@@ -111,19 +109,16 @@ public class VerifyAccountTests {
 			assertNotNull(account_720_res.getVerify_txt());
 
 		} catch (JsonParseException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void account_721() {
+	public void account_721_res_Test() {
 		String result = "{\"VV\":\"4O5nAc6JpviOGMyN9WfTwxZJPAeRwXocg2mgNvZ0wsc%3D\",\"COMMON_HEAD\":{\"ERROR\":false,\"MESSAGE\":\"\",\"CODE\":\"\"},\"RM\":\"정상\",\"VM\":\"HmacSHA256\",\"TNO\":\"20180109184512\",\"EV\":\"t0e4oD%2Fo9vDV%2BpFH4Qx0rOmpvYDR8j9OJdBIm1SqOjN8M4A8ZLcVm%2F7Dn5JVKOhUkFJ1CI8sqN54IMTTOxnc1VxaqyRPKaeRbxSPeKlGQXKNXPERLY1jogxUkV%2BQO9Pp\",\"ID\":\"03420001\",\"RS_DTIME\":\"20180109184513\",\"EM\":\"AES\",\"RC\":\"0000\"}";
 		System.out.println("original result : " + result);
 		mapper = new ObjectMapper();
@@ -154,47 +149,42 @@ public class VerifyAccountTests {
 			assertNotNull(account_721_res.getVerify_val());
 			
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-//	@Test
-	public void test() {
+	@Test
+	public void realName_Res_Test() {
 		String result = "{\"RESP_DATA\":[{\"ACCT_NM\":\"달나라가자\",\"TRSC_SEQ_NO\":\"0451677\"}],\"RSLT_MSG\":\"정상처리\",\"RSLT_CD\":\"000\"}";
 		System.out.println("original result : " + result);
 		mapper = new ObjectMapper();
-		RealName_Res responseData = new RealName_Res();
+		RealName_Res realName_res = new RealName_Res();
 		
 		try {
-			responseData = mapper.readValue(result, RealName_Res.class);
-			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData));
-			System.out.println("responseData resp_data: " + responseData.toString());
-			System.out.println("responseData rslt_cd : " + responseData.getRslt_cd());
-			System.out.println("responseData rslt_msg : " + responseData.getRslt_msg());
-			System.out.println("responseData resp_data acct_nm: " + responseData.getResp_data().get(0).getAcct_nm());
-			System.out.println("responseData resp_data trsc_seq_no : " + responseData.getResp_data().get(0).getTrsc_seq_no());
+			realName_res = mapper.readValue(result, RealName_Res.class);
+			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(realName_res));
+			
+			assertNotNull(realName_res.getRslt_cd());
+			assertNotNull(realName_res.getRslt_msg());
+			assertNotNull(realName_res.getResp_data());
+			assertNotNull(realName_res.getResp_data().get(0).getAcct_nm());
+			assertNotNull(realName_res.getResp_data().get(0).getTrsc_seq_no());
 			
 		} catch (JsonParseException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 	
-//	@Test
-	public void 계좌검증_정상동작_확인() {
+	@Test
+	public void 본인계좌등록_정상동작_확인() {
 //	기준		화면설계서 https://4akpgl.axshare.com/#g=1&p=%EB%B3%B8%EC%9D%B8_%EA%B3%84%EC%A2%8C_%EB%93%B1%EB%A1%9D			
 //			1.예금주, 2.예금은행, 3.계좌번호를 입력 후 4. 본인 계좌 등록 신청 버튼 클릭 시
 //	Step1	coocon 성명조회
@@ -204,9 +194,24 @@ public class VerifyAccountTests {
 //	Step4	kibnet 계좌검증확인 서비스 실행
 		
 //		Step1 - 성명조회
-		String randomNum = getRandomNum();		//	거래일련번호 TODO BACK
-		String bank_cd = Bank_CD.농협은행.getCD();	//	2.예금은행 TODO FRONT
-		String acct_no = "14902597746";			//	3.계좌번호 TODO FRONT
+		String randomNum = "";		//	거래일련번호 TODO BACK
+		String bank_cd = "";			//	2.예금은행 TODO FRONT
+		String acct_no = "";			//	3.계좌번호 TODO FRONT
+		String name = "";
+		
+		String[][] inputDatas = {
+				{Bank_CD.농협은행.getCD(), "14902597746", "홍길동"},
+				{Bank_CD.농협은행.getCD(), "3021076539731", "홍길동"},
+				{Bank_CD.국민은행.getCD(), "65270104237567", "홍길동"},
+				{Bank_CD.국민은행.getCD(), "772210258507", "홍길동"},
+				{Bank_CD.수협중앙회.getCD(), "02602123171", "홍길동"}};
+		
+		for(String[] inputData : inputDatas) {
+			randomNum = Utils.getRandomNum();
+			bank_cd = inputData[0];
+			acct_no = inputData[1];
+			name = inputData[2];
+		}
 		
 		RealName_Req realName_req = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd(bank_cd)
@@ -240,16 +245,16 @@ public class VerifyAccountTests {
 			e.printStackTrace();
 		}
 		
-		assertEquals("000", responseData.getRslt_cd());
+		assertEquals(CommonVariables.CODE_000, responseData.getRslt_cd());
 		// TODO 예금주명 일치 시 1원 입금 정보 popup 노출
 		assertEquals(randomNum, responseData.getResp_data().get(0).getTrsc_seq_no());		//	거래일련번호 확인
 		
 		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
-//		assertEquals("예금주", responseData.getResp_data().get(0).getAcct_nm());			//	1.예금주 TODO FRONT
+//		assertEquals(name, responseData.getResp_data().get(0).getAcct_nm());			//	1.예금주 TODO FRONT
 				
 //		Step2 - 은행시간 검증
 		Account_Req account_req = new Account_Req(CommonVariables.ID, CommonVariables.CRYPT_KEY);
-		account_req.setJsonData_100("004");	//	2.예금은행 TODO FRONT
+		account_req.setJsonData_100(bank_cd);	//	2.예금은행 TODO FRONT
 		
 		VerifyAccount verifyAccount = new VerifyAccount();
 		String result_100 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_100, account_req.getUrlString());
@@ -281,7 +286,7 @@ public class VerifyAccountTests {
 		// TODO 은행점검시간일 경우 elert popup을 노출 시킨다.
 		
 //		Step3 - 계좌검증
-		account_req.setJsonData_720(Bank_CD.국민은행.getCD(), "772210258507", "홍길동");	//	1.예금주2.예금은행3계좌번호 TODO FRONT
+		account_req.setJsonData_720(bank_cd, acct_no, name);	//	1.예금주2.예금은행3계좌번호 TODO FRONT
 		String result_720 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_720, account_req.getUrlString());
 		System.out.println("result_720 : " + result_720);
 		
@@ -333,21 +338,5 @@ public class VerifyAccountTests {
 		assertEquals(verify_tr_no, account_721_res.getVerify_tr_no());
 		assertEquals(verify_val, account_721_res.getVerify_val());
 		// TODO 인증번호가 일치하지 않을 시 "" alert popup 노출
-	}
-	
-	private String getRandomNum() {
-		Random random = new Random();
-		int number = random.nextInt(1000000) + 100000;
-		if(number > 1000000) {
-			number = number - 100000;
-		}
-		
-		String numberString = "0" + String.valueOf(number);
-		if(randomNumSet.contains(numberString)) {
-			return getRandomNum();
-		}else {
-			randomNumSet.add(numberString);
-			return numberString;
-		}
 	}
 }

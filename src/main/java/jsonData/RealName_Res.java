@@ -20,18 +20,6 @@ public class RealName_Res {
 	@JsonProperty("RSLT_MSG")
 	private String rslt_msg;
 
-//	public List<RealName.Resp_data> getResp_data(){
-//		return this.resp_data;
-//	}
-//
-//	public String getRslt_cd() {
-//		return this.rslt_cd;
-//	}
-//	
-//	public String getRslt_msg() {
-//		return this.rslt_msg;
-//	}
-
 	@Getter
 	public static class Resp_data{
 	
@@ -41,12 +29,5 @@ public class RealName_Res {
 		@JsonProperty("TRSC_SEQ_NO")
 		private String trsc_seq_no;
 
-//		public String getAcct_nm() {
-//			return this.acct_nm;
-//		}
-//		
-//		public String getTrsc_seq_no() {
-//			return this.trsc_seq_no;
-//		}
 	}
 }

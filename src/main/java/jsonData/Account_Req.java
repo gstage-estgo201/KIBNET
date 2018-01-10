@@ -41,7 +41,7 @@ public class Account_Req {
 		}
 		
 		if(reqEV == null || reqVV == null) {
-			System.out.println("EV : " + reqEV + ", VV : " + reqVV);
+//			System.out.println("EV : " + reqEV + ", VV : " + reqVV);
 			return null;
 		}
 		

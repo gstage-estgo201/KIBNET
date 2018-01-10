@@ -34,7 +34,7 @@ public class VerifyAccountTests {
 	@Test
 	public void account_100_res_test() {
 		String result = "{\"VV\":\"3Kgv5ZkECaj7FCUbmgbZfZniXOIx1IWDTaqgykY1L0g%3D\",\"COMMON_HEAD\":{\"ERROR\":false,\"MESSAGE\":\"\",\"CODE\":\"\"},\"RM\":\"정상\",\"VM\":\"HmacSHA256\",\"TNO\":\"20180109184511\",\"EV\":\"64jLj%2FSk%2FaCcA71FbZEqd59iY5hwdkMYtb6GtEYcuum5wkEeaCTlGv9WMNhE4cI53DOISz9OWHekkBM1SaM2n7Oos48fUWXLC6DZnOqwg1Zv%2F8oKy%2BR8Ni6gToS%2B27Go%2B2o0vtCDCClMLSJAsVvuyWctnC80ewbtux%2BU%2FBc2x3LBhWpEHEvlPTKJ2eKQ0I8B\",\"ID\":\"03420001\",\"RS_DTIME\":\"20180109184512\",\"EM\":\"AES\",\"RC\":\"0000\"}";
-		System.out.println("original result : " + result);
+
 		mapper = new ObjectMapper();
 		Account_100_Res account_100_res = new Account_100_Res();
 
@@ -75,7 +75,7 @@ public class VerifyAccountTests {
 	@Test
 	public void accunt_720_res_test() {
 		String result = "{\"VV\":\"%2B%2FhxacyW%2B1Bs2%2FicP7JtcuSUsFe0bGsc55QbWCTQbos%3D\",\"COMMON_HEAD\":{\"ERROR\":false,\"MESSAGE\":\"\",\"CODE\":\"\"},\"RM\":\"정상\",\"VM\":\"HmacSHA256\",\"TNO\":\"20180109184512\",\"EV\":\"64jLj%2FSk%2FaCcA71FbZEqd8Uf8rRRR1ItT15LRHIYvo%2BFKghtKlRseRLi7iFzM%2B6cKYjnSZCEk%2BHq%2BKNdJf2PzPsB2TGo3RE8v5svlP5BqR%2BX3rDZgsIq7ynbMrkK8q6Q4mMBAbJjvOpk4uwB7iUkmRh0w4Cy30JCkT%2FQLGWNlpI%3D\",\"ID\":\"03420001\",\"RS_DTIME\":\"20180109184512\",\"EM\":\"AES\",\"RC\":\"0000\"}";
-		System.out.println("original result : " + result);
+		
 		mapper = new ObjectMapper();
 		Account_720_Res account_720_res = new Account_720_Res();
 		
@@ -117,7 +117,7 @@ public class VerifyAccountTests {
 	@Test
 	public void account_721_res_Test() {
 		String result = "{\"VV\":\"4O5nAc6JpviOGMyN9WfTwxZJPAeRwXocg2mgNvZ0wsc%3D\",\"COMMON_HEAD\":{\"ERROR\":false,\"MESSAGE\":\"\",\"CODE\":\"\"},\"RM\":\"정상\",\"VM\":\"HmacSHA256\",\"TNO\":\"20180109184512\",\"EV\":\"t0e4oD%2Fo9vDV%2BpFH4Qx0rOmpvYDR8j9OJdBIm1SqOjN8M4A8ZLcVm%2F7Dn5JVKOhUkFJ1CI8sqN54IMTTOxnc1VxaqyRPKaeRbxSPeKlGQXKNXPERLY1jogxUkV%2BQO9Pp\",\"ID\":\"03420001\",\"RS_DTIME\":\"20180109184513\",\"EM\":\"AES\",\"RC\":\"0000\"}";
-		System.out.println("original result : " + result);
+		
 		mapper = new ObjectMapper();
 		Account_721_Res account_721_res = new Account_721_Res();
 		
@@ -157,7 +157,7 @@ public class VerifyAccountTests {
 	@Test
 	public void realName_Res_Test() {
 		String result = "{\"RESP_DATA\":[{\"ACCT_NM\":\"달나라가자\",\"TRSC_SEQ_NO\":\"0451677\"}],\"RSLT_MSG\":\"정상처리\",\"RSLT_CD\":\"000\"}";
-		System.out.println("original result : " + result);
+		
 		mapper = new ObjectMapper();
 		RealName_Res realName_res = new RealName_Res();
 		
@@ -208,8 +208,6 @@ public class VerifyAccountTests {
 			acct_no = inputData[1];
 			name = inputData[2];
 			
-			System.out.println("===== Scenario Test Start ====");
-			System.out.println("banj_cd : " + bank_cd + ", acct_no : " + acct_no + ", name : " + name);
 			AccountRegistration_Scenario(bank_cd, acct_no, name);
 		}
 		
@@ -217,6 +215,9 @@ public class VerifyAccountTests {
 	}
 	
 	private void AccountRegistration_Scenario(String bank_cd, String acct_no, String name) {
+		System.out.println("===== Scenario Test Start ====");
+		System.out.println("banj_cd : " + bank_cd + ", acct_no : " + acct_no + ", name : " + name);
+		
 		String randomNum = Utils.getRandomNum();	//	거래일련번호 TODO BACK
 		
 		RealName_Req realName_req = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
@@ -230,19 +231,13 @@ public class VerifyAccountTests {
 		VerifyRealName verifyRealName = new VerifyRealName();
 		String result = verifyRealName.verify(realName_req.getJsonData());
 		
-		System.out.println("result : " + result.trim());
-		
 		assertNotNull(result);
 		mapper = new ObjectMapper();
 		RealName_Res responseData = new RealName_Res();
 
 		try {
 			responseData = mapper.readValue(result, RealName_Res.class);
-			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData));
-			System.out.println("responseData rslt_cd : " + responseData.getRslt_cd());
-			System.out.println("responseData rslt_msg : " + responseData.getRslt_msg());
-			System.out.println("responseData resp_data acct_nm: " + responseData.getResp_data().get(0).getAcct_nm());
-			System.out.println("responseData resp_data trsc_seq_no : " + responseData.getResp_data().get(0).getTrsc_seq_no());
+			System.out.println("pretty responseData realName : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseData));
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -264,16 +259,14 @@ public class VerifyAccountTests {
 		
 		VerifyAccount verifyAccount = new VerifyAccount();
 		String result_100 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_100, account_req.getUrlString());
-		
-		System.out.println("result_100 : " + result_100);
-		
+			
 		assertNotNull(result_100);
 		
 		Account_100_Res account_100_res = new Account_100_Res();
 
 		try {
 			account_100_res = mapper.readValue(result_100, Account_100_Res.class);
-			System.out.println("pretty responseData : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(account_100_res));
+			System.out.println("pretty responseData account_100 : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(account_100_res));
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -294,7 +287,6 @@ public class VerifyAccountTests {
 //		Step3 - 계좌검증
 		account_req.setJsonData_720(bank_cd, acct_no, name);	//	1.예금주2.예금은행3계좌번호 TODO FRONT
 		String result_720 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_720, account_req.getUrlString());
-		System.out.println("result_720 : " + result_720);
 		
 		assertNotNull(result_720);
 		
@@ -302,7 +294,7 @@ public class VerifyAccountTests {
 		
 		try {
 			account_720_res = mapper.readValue(result_720, Account_720_Res.class);
-			System.out.println("pretty account_720_res : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(account_720_res));
+			System.out.println("pretty responseData account_720 : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(account_720_res));
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -322,14 +314,13 @@ public class VerifyAccountTests {
 		String verify_val = "123";	// Test server에서는 123입력 시 성공, 운영에서는 실제 고객 통장에 찍힌 검증번호를 입력하여야 함(5인증번호)
 		account_req.setJsonData_721(verify_tr_dt, verify_tr_no, verify_val);
 		String result_721 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_721, account_req.getUrlString());
-		System.out.println("result_721 : " + result_721);
 		
 		assertNotNull(result_721);
 		
 		Account_721_Res account_721_res = new Account_721_Res();
 		try {
 			account_721_res = mapper.readValue(result_721, Account_721_Res.class);
-			System.out.println("pretty account_721_res : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(account_721_res));
+			System.out.println("pretty responseData account_721 : " + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(account_721_res));
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

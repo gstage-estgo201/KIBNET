@@ -40,7 +40,7 @@ public class RealName_Req {
 		
 		jsonData.put(JsonData_InputType.REQ_DATA, reqData);
 		
-		System.out.println("jsonData : " + jsonData);
+		System.out.println("RealName_Req jsonData : " + jsonData);
 		
 		return jsonData.toJSONString();
 	}

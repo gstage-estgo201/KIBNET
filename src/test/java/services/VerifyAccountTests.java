@@ -194,7 +194,7 @@ public class VerifyAccountTests {
 //	Step4	kibnet 계좌검증확인 서비스 실행
 		
 //		Step1 - 성명조회
-		String randomNum = "";		//	거래일련번호 TODO BACK
+		
 		String bank_cd = "";			//	2.예금은행 TODO FRONT
 		String acct_no = "";			//	3.계좌번호 TODO FRONT
 		String name = "";
@@ -207,11 +207,18 @@ public class VerifyAccountTests {
 				{Bank_CD.수협중앙회.getCD(), "02602123171", "홍길동"}};
 		
 		for(String[] inputData : inputDatas) {
-			randomNum = Utils.getRandomNum();
 			bank_cd = inputData[0];
 			acct_no = inputData[1];
 			name = inputData[2];
+			
+			AccountRegistration_Scenario(bank_cd, acct_no, name);
 		}
+		
+		
+	}
+	
+	private void AccountRegistration_Scenario(String bank_cd, String acct_no, String name) {
+		String randomNum = Utils.getRandomNum();	//	거래일련번호 TODO BACK
 		
 		RealName_Req realName_req = new RealName_Req.Builder(CommonVariables.SECR_KEY, CommonVariables.KEY)
 				.setBank_cd(bank_cd)

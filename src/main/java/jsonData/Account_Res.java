@@ -40,7 +40,7 @@ public abstract class Account_Res {
 	}
 	
 	@JsonProperty("EV")
-	public void unpackNestedEv(String Ev) {
+	public void unpackNestedEncEv(String Ev) {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String, String> evMap = new HashMap<>();
 		String decEv = null;
@@ -48,7 +48,6 @@ public abstract class Account_Res {
 		try {
 			decEv = SecurityUtil.DecryptAesBase64(Ev, CommonVariables.CRYPT_KEY, true);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -61,10 +60,10 @@ public abstract class Account_Res {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		unpackNestedEv(evMap);
+		unpackNestedDecEv(evMap);
 	}
 	
-	public abstract void unpackNestedEv(Map<String, String> ev);
+	public abstract void unpackNestedDecEv(Map<String, String> ev);
 	
 	@Getter
 	private enum Key {

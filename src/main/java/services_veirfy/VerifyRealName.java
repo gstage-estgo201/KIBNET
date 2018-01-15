@@ -1,4 +1,4 @@
-package services;
+package services_veirfy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,6 +14,10 @@ public class VerifyRealName {
 	private String responseData;
 	
 	public String verify(String jsonData) {
+		
+		if(jsonData == null) {
+			return null;
+		}
 		
 		try {
 			connection = (HttpURLConnection)new URL(CommonVariables.VERIFY_NAME_URL + "?JSONData=" + jsonData).openConnection();

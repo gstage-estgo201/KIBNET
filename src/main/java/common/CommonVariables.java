@@ -8,10 +8,9 @@ public class CommonVariables {
 	public final static String ID = "03420001";
 	public final static String CRYPT_KEY = "checkpa58Kid##79**#ekIhkd#1ssi*l";
 
-	public final static String SERVICE_CONTENT_100 = "CPIF_AFFL_100.jct?";
-	public final static String SERVICE_CONTENT_710 = "CPIF_AFFL_710.jct?";
-	public final static String SERVICE_CONTENT_720 = "CPIF_AFFL_720.jct?";
-	public final static String SERVICE_CONTENT_721 = "CPIF_AFFL_721.jct?";
+	public final static String SERVICE_CONTENT_100 = "CPIF_AFFL_100.jct?";	//	은행점검시간
+	public final static String SERVICE_CONTENT_720 = "CPIF_AFFL_720.jct?";	//	계좌번호 검증
+	public final static String SERVICE_CONTENT_721 = "CPIF_AFFL_721.jct?";	//	계좌번호 검증확인
 	
 	
 	/* 예금주 조회 - coocon */
@@ -23,7 +22,7 @@ public class CommonVariables {
 	
 //	Error Code
 	public final static String CODE_000 = "000";		//	정상처리(예금주조회) - coocon
-	public final static String CODE_101 = "101";	//	1일 이체가능 건수 초과
+	public final static String CODE_101 = "101";		//	1일 이체가능 건수 초과
 	
 	public final static String CODE_0000 = "0000";	//	정상처리(계좌인증) - kibnet
 	// 등등등

@@ -13,12 +13,12 @@ public class Account_100_Res extends Account_Res {
 	private String svc_stop_edtime;
 	
 	@Override
-	public void unpackNestedEv(Map<String, String> ev) {
+	public void unpackNestedDecEv(Map<String, String> ev) {
 		this.fnni_cd = ev.get(Key.Constants.fnni_cd);
 		this.svc_stop_sdtime = ev.get(Key.Constants.svc_stop_sdtime);
 		this.current_dtime = ev.get(Key.Constants.current_dtime);
 		this.svc_stop_edtime = ev.get(Key.Constants.svc_stop_edtime);
-	}	
+	}
 	
 	@Getter
 	private enum Key {

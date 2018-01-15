@@ -12,7 +12,7 @@ public class Account_721_Res extends Account_Res {
 	private String verify_val;
 	
 	@Override
-	public void unpackNestedEv(Map<String, String> ev) {
+	public void unpackNestedDecEv(Map<String, String> ev) {
 		this.verify_tr_dt = ev.get("verify_tr_dt");
 		this.verify_tr_no = ev.get("verify_tr_no");
 		this.verify_val = ev.get("verify_val");

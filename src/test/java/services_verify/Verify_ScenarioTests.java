@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -70,6 +71,10 @@ public class Verify_ScenarioTests {
 		System.out.println("===== Scenario Test Start ====");
 		System.out.println("banj_cd : " + bank_cd + ", acct_no : " + acct_no + ", name : " + name);
 		
+		if(StringUtils.isBlank(bank_cd) || StringUtils.isBlank(acct_no) || StringUtils.isBlank(name)) {
+			return;	// TODO	1.예금주, 2.예금은행, 3.계좌번호 중 하나라도 정상적이지 못한 값인 경우 alert popup을 노출시킨다.
+		}
+		
 //		Step1 - 성명조회
 		String randomNum = Utils.getRandomNum();	//	거래일련번호 TODO BACK
 		
@@ -100,7 +105,7 @@ public class Verify_ScenarioTests {
 		}
 		
 		assertEquals(CommonVariables.CODE_000, responseData.getRslt_cd());
-		// TODO 예금주명 일치 시 1원 입금 정보 popup 노출
+		//	TODO 예금주명 일치 시 1원 입금 정보 popup 노출
 		assertEquals(randomNum, responseData.getResp_data().get(0).getTrsc_seq_no());		//	거래일련번호 확인
 		
 		//	TODO 본인 계좌 등록화면의 1.예금주와 동일한지 확인한다.
@@ -169,6 +174,11 @@ public class Verify_ScenarioTests {
 //		Step4 - 계좌확인
 		// TODO 인증번호 미입력 후 버틀 클릭 시 "인증번호를 입력해 주세요" 팝업 노출
 		String verify_val = "123";	// Test server에서는 123입력 시 성공, 운영에서는 실제 고객 통장에 찍힌 검증번호를 입력하여야 함(5인증번호)
+		
+		if(StringUtils.isBlank(verify_val)) {
+			return;	//	TODO 인증번호 입력하지 않고 6.인증번호 확인 버튼 클릭 시 alert popup 노출
+		}
+		
 		account_req.setJsonData_721(verify_tr_dt, verify_tr_no, verify_val);
 		String result_721 = verifyAccount.verify(CommonVariables.SERVICE_CONTENT_721, account_req.getUrlString());
 		
@@ -191,7 +201,7 @@ public class Verify_ScenarioTests {
 		assertEquals(verify_tr_dt, account_721_res.getVerify_tr_dt());
 		assertEquals(verify_tr_no, account_721_res.getVerify_tr_no());
 		assertEquals(verify_val, account_721_res.getVerify_val());
-		// TODO 인증번호가 일치하지 않을 시 "" alert popup 노출
+		// TODO 인증번호가 일치하지 않을 시 alert popup 노출
 		
 		System.out.println("===== Scenario Test End ====");
 	}

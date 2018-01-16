@@ -28,5 +28,6 @@ dependencies {
     compile 'org.projectlombok:lombok:1.16.20'
 	compile 'com.googlecode.json-simple:json-simple:1.1.1'
 	compile group: 'com.fasterxml', name: 'jackson-xml-databind', version: '0.6.2'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.1'
 }
 

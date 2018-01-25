@@ -6,5 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="lib/checkpay-security-0.0.5.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="/Users/estgo201/Dev/Docs/KIBDNET/KIBNET_카이렉스_전문설계서/송금PG서비스/BOX모듈/UNIX계열_펌모듈_문서_DBIntegrated (1)/firm/lib/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
